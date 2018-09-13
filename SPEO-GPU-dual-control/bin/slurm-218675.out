@@ -1,0 +1,264 @@
+--------function_ID = 23---------------------
+Run: 1, Time: 0.542 s, Best fitness: 348.654693604
+Run: 2, Time: 0.542 s, Best fitness: 349.130371094
+Run: 3, Time: 0.542 s, Best fitness: 348.825683594
+Run: 4, Time: 0.542 s, Best fitness: 348.715087891
+Run: 5, Time: 0.542 s, Best fitness: 348.624664307
+Run: 6, Time: 0.542 s, Best fitness: 348.958129883
+Run: 7, Time: 0.542 s, Best fitness: 348.891357422
+Run: 8, Time: 0.542 s, Best fitness: 349.004211426
+Run: 9, Time: 0.542 s, Best fitness: 348.933013916
+Run: 10, Time: 0.542 s, Best fitness: 348.781494141
+Run: 11, Time: 0.542 s, Best fitness: 349.017211914
+Run: 12, Time: 0.542 s, Best fitness: 349.160552979
+Run: 13, Time: 0.542 s, Best fitness: 348.983001709
+Run: 14, Time: 0.542 s, Best fitness: 348.796356201
+Run: 15, Time: 0.542 s, Best fitness: 348.984588623
+-----------------------------------------------
+--------function_ID = 24---------------------
+Run: 1, Time: 0.542 s, Best fitness: 370.757843018
+Run: 2, Time: 0.542 s, Best fitness: 366.505004883
+Run: 3, Time: 0.542 s, Best fitness: 367.336364746
+Run: 4, Time: 0.542 s, Best fitness: 367.880065918
+Run: 5, Time: 0.542 s, Best fitness: 366.446777344
+Run: 6, Time: 0.542 s, Best fitness: 370.116394043
+Run: 7, Time: 0.542 s, Best fitness: 368.030853271
+Run: 8, Time: 0.542 s, Best fitness: 367.887786865
+Run: 9, Time: 0.542 s, Best fitness: 366.763031006
+Run: 10, Time: 0.542 s, Best fitness: 370.621002197
+Run: 11, Time: 0.542 s, Best fitness: 368.271514893
+Run: 12, Time: 0.542 s, Best fitness: 368.141723633
+Run: 13, Time: 0.542 s, Best fitness: 368.005584717
+Run: 14, Time: 0.542 s, Best fitness: 367.040863037
+Run: 15, Time: 0.542 s, Best fitness: 365.671508789
+-----------------------------------------------
+--------function_ID = 25---------------------
+Run: 1, Time: 0.542 s, Best fitness: 201.216079712
+Run: 2, Time: 0.542 s, Best fitness: 201.344528198
+Run: 3, Time: 0.542 s, Best fitness: 201.275405884
+Run: 4, Time: 0.542 s, Best fitness: 201.968490601
+Run: 5, Time: 0.542 s, Best fitness: 201.727157593
+Run: 6, Time: 0.542 s, Best fitness: 201.917999268
+Run: 7, Time: 0.542 s, Best fitness: 202.010284424
+Run: 8, Time: 0.542 s, Best fitness: 202.601943970
+Run: 9, Time: 0.542 s, Best fitness: 202.030059814
+Run: 10, Time: 0.542 s, Best fitness: 201.513412476
+Run: 11, Time: 0.542 s, Best fitness: 201.095672607
+Run: 12, Time: 0.542 s, Best fitness: 201.777877808
+Run: 13, Time: 0.542 s, Best fitness: 200.352645874
+Run: 14, Time: 0.542 s, Best fitness: 200.460388184
+Run: 15, Time: 0.542 s, Best fitness: 202.444137573
+-----------------------------------------------
+--------function_ID = 26---------------------
+Run: 1, Time: 0.543 s, Best fitness: 100.388084412
+Run: 2, Time: 0.542 s, Best fitness: 100.399230957
+Run: 3, Time: 0.543 s, Best fitness: 100.394309998
+Run: 4, Time: 0.542 s, Best fitness: 100.418670654
+Run: 5, Time: 0.543 s, Best fitness: 100.277275085
+Run: 6, Time: 0.542 s, Best fitness: 100.360229492
+Run: 7, Time: 0.542 s, Best fitness: 100.364234924
+Run: 8, Time: 0.542 s, Best fitness: 100.425544739
+Run: 9, Time: 0.543 s, Best fitness: 100.421546936
+Run: 10, Time: 0.542 s, Best fitness: 100.413841248
+Run: 11, Time: 0.543 s, Best fitness: 100.375335693
+Run: 12, Time: 0.542 s, Best fitness: 100.359466553
+Run: 13, Time: 0.543 s, Best fitness: 100.398094177
+Run: 14, Time: 0.543 s, Best fitness: 100.303901672
+Run: 15, Time: 0.542 s, Best fitness: 100.400764465
+-----------------------------------------------
+--------function_ID = 27---------------------
+Run: 1, Time: 0.542 s, Best fitness: 1244.852416992
+Run: 2, Time: 0.543 s, Best fitness: 1297.916748047
+Run: 3, Time: 0.543 s, Best fitness: 1440.437744141
+Run: 4, Time: 0.543 s, Best fitness: 1325.524780273
+Run: 5, Time: 0.543 s, Best fitness: 1299.865722656
+Run: 6, Time: 0.542 s, Best fitness: 1327.778198242
+Run: 7, Time: 0.542 s, Best fitness: 1302.144042969
+Run: 8, Time: 0.542 s, Best fitness: 1344.187866211
+Run: 9, Time: 0.542 s, Best fitness: 1355.215698242
+Run: 10, Time: 0.542 s, Best fitness: 1464.590698242
+Run: 11, Time: 0.542 s, Best fitness: 1281.022460938
+Total Elapsed time: 75.406662 seconds
+Total Elapsed time: 75.404888 seconds
+Total Elapsed time: 75.404987 seconds
+Total Elapsed time: 75.404837 seconds
+Total Elapsed time: 75.406696 seconds
+Total Elapsed time: 75.406008 seconds
+Total Elapsed time: 75.407329 seconds
+Total Elapsed time: 75.407340 seconds
+Total Elapsed time: 75.407283 seconds
+Total Elapsed time: 75.406391 seconds
+Total Elapsed time: 75.406427 seconds
+Total Elapsed time: 75.405395 seconds
+Total Elapsed time: 75.406008 seconds
+Total Elapsed time: 75.407518 seconds
+Total Elapsed time: 75.406810 seconds
+Total Elapsed time: 75.404924 seconds
+Total Elapsed time: 75.404934 seconds
+Total Elapsed time: 75.405044 seconds
+Total Elapsed time: 75.402658 seconds
+Total Elapsed time: 75.404929 seconds
+Total Elapsed time: 75.405019 seconds
+Total Elapsed time: 75.402682 seconds
+Total Elapsed time: 75.402687 seconds
+Total Elapsed time: 75.405261 seconds
+Total Elapsed time: 75.406776 seconds
+Total Elapsed time: 75.406639 seconds
+Total Elapsed time: 75.404875 seconds
+Total Elapsed time: 75.405063 seconds
+Total Elapsed time: 75.404981 seconds
+Total Elapsed time: 75.404700 seconds
+Total Elapsed time: 75.405120 seconds
+Total Elapsed time: 75.406677 seconds
+Total Elapsed time: 75.406707 seconds
+Total Elapsed time: 75.407456 seconds
+Total Elapsed time: 75.407491 seconds
+Total Elapsed time: 75.407393 seconds
+Total Elapsed time: 75.405890 seconds
+Total Elapsed time: 75.405458 seconds
+Total Elapsed time: 75.407507 seconds
+Total Elapsed time: 75.407376 seconds
+Total Elapsed time: 75.404845 seconds
+Total Elapsed time: 75.402728 seconds
+Total Elapsed time: 75.407474 seconds
+Total Elapsed time: 75.407506 seconds
+Total Elapsed time: 75.404662 seconds
+Total Elapsed time: 75.404698 seconds
+Total Elapsed time: 75.405412 seconds
+Total Elapsed time: 75.404961 seconds
+Total Elapsed time: 75.404904 seconds
+Total Elapsed time: 75.405526 seconds
+Total Elapsed time: 75.402882 seconds
+Total Elapsed time: 75.405556 seconds
+Total Elapsed time: 75.402917 seconds
+Total Elapsed time: 75.404857 seconds
+Run: 12, Time: 0.543 s, Best fitness: 1348.136352539
+Run: 13, Time: 0.543 s, Best fitness: 1281.344482422
+Run: 14, Time: 0.542 s, Best fitness: 1260.227050781
+Run: 15, Time: 0.543 s, Best fitness: 1368.935302734
+-----------------------------------------------
+--------function_ID = 28---------------------
+Run: 1, Time: 0.542 s, Best fitness: 3665.958251953
+Run: 2, Time: 0.542 s, Best fitness: 3568.733154297
+Run: 3, Time: 0.542 s, Best fitness: 3486.386962891
+Run: 4, Time: 0.542 s, Best fitness: 3473.113525391
+Run: 5, Time: 0.542 s, Best fitness: 3443.753417969
+Run: 6, Time: 0.542 s, Best fitness: 3592.714111328
+Run: 7, Time: 0.542 s, Best fitness: 3647.876953125
+Run: 8, Time: 0.542 s, Best fitness: 3487.000244141
+Run: 9, Time: 0.542 s, Best fitness: 3578.234619141
+Run: 10, Time: 0.542 s, Best fitness: 3617.046142578
+Run: 11, Time: 0.542 s, Best fitness: 3506.450195312
+Run: 12, Time: 0.542 s, Best fitness: 3524.642822266
+Run: 13, Time: 0.542 s, Best fitness: 3535.012695312
+Run: 14, Time: 0.542 s, Best fitness: 3563.471191406
+Run: 15, Time: 0.542 s, Best fitness: 3569.132568359
+-----------------------------------------------
+--------function_ID = 29---------------------
+Run: 1, Time: 0.542 s, Best fitness: 33147.171875000
+Run: 2, Time: 0.542 s, Best fitness: 14787.572265625
+Run: 3, Time: 0.542 s, Best fitness: 27241.058593750
+Run: 4, Time: 0.542 s, Best fitness: 20419.882812500
+Run: 5, Time: 0.543 s, Best fitness: 29664.982421875
+Run: 6, Time: 0.542 s, Best fitness: 22816.353515625
+Run: 7, Time: 0.542 s, Best fitness: 30606.847656250
+Run: 8, Time: 0.542 s, Best fitness: 31276.050781250
+Run: 9, Time: 0.542 s, Best fitness: 24120.382812500
+Run: 10, Time: 0.542 s, Best fitness: 22049.330078125
+Run: 11, Time: 0.542 s, Best fitness: 21847.472656250
+Run: 12, Time: 0.542 s, Best fitness: 21771.001953125
+Run: 13, Time: 0.542 s, Best fitness: 19216.824218750
+Run: 14, Time: 0.542 s, Best fitness: 26574.666015625
+Run: 15, Time: 0.542 s, Best fitness: 22698.595703125
+-----------------------------------------------
+--------function_ID = 30---------------------
+Run: 1, Time: 0.542 s, Best fitness: 45625.867187500
+Run: 2, Time: 0.542 s, Best fitness: 51610.367187500
+Run: 3, Time: 0.542 s, Best fitness: 51465.058593750
+Run: 4, Time: 0.542 s, Best fitness: 43380.757812500
+Run: 5, Time: 0.542 s, Best fitness: 47468.527343750
+Run: 6, Time: 0.542 s, Best fitness: 40618.910156250
+Run: 7, Time: 0.542 s, Best fitness: 41201.234375000
+Run: 8, Time: 0.542 s, Best fitness: 40256.265625000
+Run: 9, Time: 0.542 s, Best fitness: 45983.203125000
+Run: 10, Time: 0.542 s, Best fitness: 41710.265625000
+Run: 11, Time: 0.542 s, Best fitness: 42950.046875000
+Run: 12, Time: 0.542 s, Best fitness: 57191.453125000
+Run: 13, Time: 0.542 s, Best fitness: 45791.304687500
+Run: 14, Time: 0.542 s, Best fitness: 34966.781250000
+Run: 15, Time: 0.542 s, Best fitness: 48519.824218750
+-----------------------------------------------
+Total Elapsed time: 75.402446 seconds
+Total Elapsed time: 75.406187 seconds
+Total Elapsed time: 75.405976 seconds
+Total Elapsed time: 75.406167 seconds
+Total Elapsed time: 75.405129 seconds
+Total Elapsed time: 75.402865 seconds
+Total Elapsed time: 75.405862 seconds
+Total Elapsed time: 75.405890 seconds
+Total Elapsed time: 75.406244 seconds
+Total Elapsed time: 75.406524 seconds
+Total Elapsed time: 75.405978 seconds
+Total Elapsed time: 75.406676 seconds
+Total Elapsed time: 75.404831 seconds
+Total Elapsed time: 75.402465 seconds
+Total Elapsed time: 75.405311 seconds
+Total Elapsed time: 75.406776 seconds
+Total Elapsed time: 75.402916 seconds
+Total Elapsed time: 75.405924 seconds
+Total Elapsed time: 75.405052 seconds
+Total Elapsed time: 75.407392 seconds
+Total Elapsed time: 75.405606 seconds
+Total Elapsed time: 75.405014 seconds
+Total Elapsed time: 75.404907 seconds
+Total Elapsed time: 75.406576 seconds
+Total Elapsed time: 75.403171 seconds
+Total Elapsed time: 75.405573 seconds
+Total Elapsed time: 75.406473 seconds
+Total Elapsed time: 75.406499 seconds
+Total Elapsed time: 75.404874 seconds
+Total Elapsed time: 75.405308 seconds
+Total Elapsed time: 75.405048 seconds
+Total Elapsed time: 75.404849 seconds
+Total Elapsed time: 75.406696 seconds
+Total Elapsed time: 75.402427 seconds
+Total Elapsed time: 75.407555 seconds
+Total Elapsed time: 75.407555 seconds
+Total Elapsed time: 75.402892 seconds
+Total Elapsed time: 75.405426 seconds
+Total Elapsed time: 75.407544 seconds
+Total Elapsed time: 75.402572 seconds
+Total Elapsed time: 75.405292 seconds
+Total Elapsed time: 75.406505 seconds
+Total Elapsed time: 75.406392 seconds
+Total Elapsed time: 75.407586 seconds
+Total Elapsed time: 75.404920 seconds
+Total Elapsed time: 75.406425 seconds
+Total Elapsed time: 75.407505 seconds
+Total Elapsed time: 75.407625 seconds
+Total Elapsed time: 75.407658 seconds
+Total Elapsed time: 75.407624 seconds
+Total Elapsed time: 75.406831 seconds
+Total Elapsed time: 75.404662 seconds
+Total Elapsed time: 75.407653 seconds
+Total Elapsed time: 75.402981 seconds
+Total Elapsed time: 75.404889 seconds
+Total Elapsed time: 75.404983 seconds
+Total Elapsed time: 75.407627 seconds
+Total Elapsed time: 75.402952 seconds
+Total Elapsed time: 75.402526 seconds
+Total Elapsed time: 75.407623 seconds
+Total Elapsed time: 75.402983 seconds
+Total Elapsed time: 75.404983 seconds
+Total Elapsed time: 75.402953 seconds
+Total Elapsed time: 75.407640 seconds
+Total Elapsed time: 75.407395 seconds
+Total Elapsed time: 75.407445 seconds
+Total Elapsed time: 75.407441 seconds
+Total Elapsed time: 75.403363 seconds
+Total Elapsed time: 75.403444 seconds
+Total Elapsed time: 75.403442 seconds
+Total Elapsed time: 75.402917 seconds
+Total Elapsed time: 75.402933 seconds
+Total Elapsed time: 75.402896 seconds
+Total Elapsed time: 75.406248 seconds
