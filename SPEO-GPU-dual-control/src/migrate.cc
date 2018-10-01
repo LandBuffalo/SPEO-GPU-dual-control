@@ -29,11 +29,12 @@ int Migrate::Unitilize()
     return 0;
 }
 
-
+//send immigrations to its communication control unit
 int Migrate::MigrateOut(EA_CUDA *EA_CUDA, Population &population)
 {
     MPI_Status mpi_status;
 
+    //check previous messages send successfully to its communication control unit
     if(success_sent_flag_ == 0)
     {
         MPI_Test(&mpi_request_, &success_sent_flag_, &mpi_status);
@@ -41,7 +42,9 @@ int Migrate::MigrateOut(EA_CUDA *EA_CUDA, Population &population)
     if (success_sent_flag_ == 1)
     {
         Population emigration_export;
+        //load population from GPU global memory to CPU RAM
         EA_CUDA->TransferDataToCPU(population);
+        //randomly select several individuals to send to communication control unit
         vector<int> tmp_ID = random_.Permutate(population.size(), island_info_.migration_size);
         for(int i = 0; i < island_info_.migration_size; i++)
             emigration_export.push_back(population[tmp_ID[i]]);
@@ -50,7 +53,9 @@ int Migrate::MigrateOut(EA_CUDA *EA_CUDA, Population &population)
         int destination = node_info_.node_ID - 1;
         int tag = problem_info_.function_ID * 1000 +  10 * problem_info_.run_ID + EMIGRATIONS_EA;
 
+        //serial the individuals to message style
         SerialIndividualToMsg(send_msg_to_other_EA_, emigration_export);
+        //send message to its communication control unit
 #ifdef GPU_DOUBLE_PRECISION
         MPI_Isend(send_msg_to_other_EA_, message_length, MPI_DOUBLE, destination, tag, MPI_COMM_WORLD, &mpi_request_);
 #endif
@@ -64,7 +69,8 @@ int Migrate::MigrateOut(EA_CUDA *EA_CUDA, Population &population)
     return 0;
 }
 int Migrate::RegroupIslands(EA_CUDA *EA_CUDA, Population &population)
-{
+{   
+    //dynamic and random ordered regrouping strategy
     if(island_info_.regroup_option == "dynamic_and_random")
     {
         int max_index = 0, pop_size = population.size() / MIN_SUBISLAND_SIZE;
@@ -81,6 +87,8 @@ int Migrate::RegroupIslands(EA_CUDA *EA_CUDA, Population &population)
         EA_CUDA->RegroupIslands(regroup_permutated_index_, island_info_);
         EA_CUDA->ConfigureEA();
     }
+    //dynamic and fixed ordered regrouping strategy
+
    if(island_info_.regroup_option == "dynamic_and_ordered")
     {
         int max_index = 0, pop_size = population.size() / MIN_SUBISLAND_SIZE;
@@ -95,6 +103,7 @@ int Migrate::RegroupIslands(EA_CUDA *EA_CUDA, Population &population)
         EA_CUDA->RegroupIslands(regroup_permutated_index_, island_info_);
         EA_CUDA->ConfigureEA();
     }
+    //static and random ordered regrouping strategy
     if(island_info_.regroup_option == "static_and_random")
     {
         regroup_permutated_index_.clear();
@@ -104,6 +113,7 @@ int Migrate::RegroupIslands(EA_CUDA *EA_CUDA, Population &population)
     return 0;
 }
 
+//find the best individuals in entire island at GPU global memory
 vector<int> Migrate::FindBestIndividualInIsland(Population &population)
 {
     int subisland_size = island_info_.island_size / island_info_.subisland_num;
@@ -126,15 +136,18 @@ vector<int> Migrate::FindBestIndividualInIsland(Population &population)
     return best_individual_index;
 }
 
+//load immigrations from buffer and merge with current population at global memory
 int Migrate::MigrateIn(EA_CUDA *EA_CUDA, Population &population)
 {
     MPI_Status mpi_status;
     int flag = 0;
     int tag = problem_info_.function_ID * 1000 +  10 * problem_info_.run_ID + EMIGRATIONS_EA;
+    //check wheher there is messages coming
     MPI_Iprobe(node_info_.node_ID - 1, tag, MPI_COMM_WORLD, &flag, &mpi_status);
     if(flag == 1)
     {
         int message_length = 0;
+        //get the length of incoming message
 #ifdef GPU_DOUBLE_PRECISION
         MPI_Get_count(&mpi_status, MPI_DOUBLE, &message_length);
 #endif
@@ -143,6 +156,7 @@ int Migrate::MigrateIn(EA_CUDA *EA_CUDA, Population &population)
 #endif
         real * msg_recv = new real[message_length];
 
+        //receive the incoming messages from communication control unit
 #ifdef GPU_DOUBLE_PRECISION
         MPI_Recv(msg_recv, message_length, MPI_DOUBLE, mpi_status.MPI_SOURCE, mpi_status.MPI_TAG, MPI_COMM_WORLD, &mpi_status);
 #endif
@@ -152,6 +166,8 @@ int Migrate::MigrateIn(EA_CUDA *EA_CUDA, Population &population)
         Population emigration_import;
         DeserialMsgToIndividual(emigration_import, msg_recv, message_length / (problem_info_.dim + 1));
         delete [] msg_recv;
+
+        //write the current population in CPU RAM to GPU global memory
         EA_CUDA->TransferDataToCPU(population);
         vector<int> permutate_index = random_.Permutate(population.size(), emigration_import.size());
         for(int i = 0; i < permutate_index.size(); i++)

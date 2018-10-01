@@ -15,7 +15,10 @@
 
 using namespace std;
 
+//total record number during procesdure
 #define TOTAL_RECORD_NUM		20
+
+//flags for oommunication
 #define EMIGRATIONS_ISLAND     0
 #define EMIGRATIONS_EA     1
 #define FLAG_FINISH       		2
@@ -25,8 +28,11 @@ using namespace std;
 //#define DISPLAY
 //#define DIVERSITY
 //#define EA_CPU
+
+//total computing time
 #define COMPUTING_TIME
 
+//float precision control
 #define GPU_SINGLE_PRECISION
 #ifdef GPU_DOUBLE_PRECISION
   typedef double real;
@@ -35,6 +41,7 @@ using namespace std;
   typedef float real;
 #endif
 
+//structure of each individual
 struct Individual
 {
 	vector<real> elements;
@@ -43,7 +50,7 @@ struct Individual
 
 typedef vector<Individual> Population;
 
-
+//structure of population parameters
 struct ProblemInfo
 {
 	int dim;
@@ -57,6 +64,7 @@ struct ProblemInfo
 	real min_bound;
 };
 
+//structure of communication node parameters
 struct NodeInfo
 {
     int task_ID;
@@ -66,6 +74,7 @@ struct NodeInfo
 	int GPU_ID;
 };
 
+//structure of island information parameters
 struct IslandInfo
 {
 	int island_size;
@@ -81,6 +90,7 @@ struct IslandInfo
 	string buffer_manage;
 };
 
+//structure of display member variable
 struct DisplayUnit
 {
 	real time;

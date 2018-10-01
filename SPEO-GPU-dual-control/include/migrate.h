@@ -15,12 +15,10 @@ private:
 	NodeInfo				node_info_;
     MPI_Request             mpi_request_;
     int                     success_sent_flag_;
-    real *				send_msg_to_other_EA_;
-    BufferManage *			recv_buffer_manage_;
-    BufferManage *			send_buffer_manage_;
-    int     				flag_finish_;
-    vector<int>             regroup_permutated_index_;
-    int  					RegroupIslands(EA_CUDA *EA_CUDA, Population &population);
+    real *				    send_msg_to_other_EA_;         //message style of population
+    int     				flag_finish_;                  //flag for whether finish
+    vector<int>             regroup_permutated_index_;      //rpermutated indexs for dynamic regrouping
+    int  					RegroupIslands(EA_CUDA *EA_CUDA, Population &population); //perform dynamic regrouping scheme
     vector<int>             FindBestIndividualInIsland(Population &population);
 	int						SerialIndividualToMsg(real *msg_of_node_EA, vector<Individual> &individual);
     int                     DeserialMsgToIndividual(vector<Individual> &individual, real *msg_of_node_EA, int length);

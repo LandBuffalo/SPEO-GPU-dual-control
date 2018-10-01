@@ -14,7 +14,7 @@ int Master::Initilize(IslandInfo island_info, ProblemInfo problem_info)
 {
     island_info_ = island_info;
     problem_info_ = problem_info;
-
+    //build object for buffer management
     recv_buffer_manage_ = new OnlineCluster(island_info_.buffer_capacity);
     //send_buffer_manage_ = new RandomSelect(island_info_.island_size);
     GenerateDestinations();
@@ -37,12 +37,15 @@ int Master::Unitilize()
 
     return 0;
 }
+
+//perform dynamic migration topology 
 int Master::GenerateDestinations()
 {
 	if(destinations_.size() == 0)
 	{
 		for (int i = 0; i < node_info_.GPU_num; i++)
 		{
+            //if random variable is smaller than p_token
 			if(random_.RandRealUnif(0,1) < island_info_.migration_rate && i != node_info_.GPU_ID)
 				destinations_.push_back(node_info_.node_num / node_info_.GPU_num * i);
 		}
@@ -52,6 +55,7 @@ int Master::GenerateDestinations()
 int Master::RecvAndSendEmigrationToEA(MPI_Status *mpi_status)
 {
     int message_recv_length = 0;
+    //single / double precision communication mode control
 #ifdef GPU_DOUBLE_PRECISION
     MPI_Get_count(mpi_status, MPI_DOUBLE, &message_recv_length);
 #endif
@@ -65,10 +69,12 @@ int Master::RecvAndSendEmigrationToEA(MPI_Status *mpi_status)
 #ifdef GPU_SINGLE_PRECISION
     MPI_Recv(msg_recv, message_recv_length, MPI_FLOAT, mpi_status->MPI_SOURCE, mpi_status->MPI_TAG, MPI_COMM_WORLD, mpi_status);
 #endif
+    //clean sending buffer before deserial the messages
     send_buffer_Population_.clear();
     DeserialMsgToIndividual(send_buffer_Population_, msg_recv, message_recv_length / (problem_info_.dim + 1));
 
     delete [] msg_recv;
+    //check whether previous message is successfully sent to GPU Control Unit
     if(flag_wait_new_send_to_EA_ == 0)
     {
         MPI_Test(&mpi_request_to_EA_, &flag_wait_new_send_to_EA_, mpi_status);
@@ -76,12 +82,15 @@ int Master::RecvAndSendEmigrationToEA(MPI_Status *mpi_status)
     if(flag_wait_new_send_to_EA_ == 1)
     {
 	    Population emigration_in;
+        //select several emmigrations from current buffer to GPu Control Unit
 	    recv_buffer_manage_->SelectFromBuffer(emigration_in, island_info_.migration_size);
         if(emigration_in.size() > 0)
         {
             int message_send_length = emigration_in.size() * (problem_info_.dim + 1);
+            //seril individuals to messages mode for sending
             SerialIndividualToMsg(msg_to_EA_, emigration_in);
             int tag = problem_info_.function_ID * 1000 +  10 * problem_info_.run_ID + EMIGRATIONS_EA;
+            //send message to GPu COntrol Unit
 #ifdef GPU_DOUBLE_PRECISION
             MPI_Isend(msg_to_EA_, message_send_length, MPI_DOUBLE, node_info_.node_ID + 1, tag, MPI_COMM_WORLD, &mpi_request_to_EA_);
 #endif
@@ -99,6 +108,7 @@ int Master::SendEmigrationToOtherMaster()
 {
     MPI_Status mpi_status;
     GenerateDestinations();
+    //check whether previous messages are successfully sent to other communication control unit
     if(flag_wait_new_send_to_island_ == 0)
     {
         MPI_Test(&mpi_request_to_island_, &flag_wait_new_send_to_island_, &mpi_status);
@@ -107,18 +117,21 @@ int Master::SendEmigrationToOtherMaster()
     {
     	Population emigration_export;
       //send_buffer_manage_->SelectFromBuffer(emigration_export, island_info_.migration_size);
+        //randomly permutate several individuals to send to other communication control unit
     	vector<int> emigration_export_ID = random_.Permutate(send_buffer_Population_.size(), island_info_.migration_size);
     	for(int i = 0; i < emigration_export_ID.size(); i++)
 			emigration_export.push_back(send_buffer_Population_[emigration_export_ID[i]]);
 		int message_length = emigration_export.size() * (problem_info_.dim + 1);
         SerialIndividualToMsg(msg_to_island_, emigration_export);
         int tag = problem_info_.function_ID * 1000 +  10 * problem_info_.run_ID + EMIGRATIONS_ISLAND;
+        //send messages to other communication control unit
 #ifdef GPU_DOUBLE_PRECISION
         MPI_Isend(msg_to_island_, message_length, MPI_DOUBLE, destinations_[0], tag, MPI_COMM_WORLD, &mpi_request_to_island_);
 #endif
 #ifdef GPU_SINGLE_PRECISION
         MPI_Isend(msg_to_island_, message_length, MPI_FLOAT, destinations_[0], tag, MPI_COMM_WORLD, &mpi_request_to_island_);
 #endif
+        //clear the previous selected destinated ID from destination pool
         destinations_.erase(destinations_.begin());
         flag_wait_new_send_to_island_ = 0;
     }

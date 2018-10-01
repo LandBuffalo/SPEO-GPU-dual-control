@@ -10,7 +10,6 @@ Random::~Random()
 {
 
 }
-
 int Random::RandIntUnif(int min_value, int max_value)
 {
 	if (min_value != max_value)
@@ -18,6 +17,7 @@ int Random::RandIntUnif(int min_value, int max_value)
 	else
 		return min_value;
 }
+
 real Random::RandRealUnif(real min_value, real max_value)
 {
 
@@ -26,6 +26,7 @@ real Random::RandRealUnif(real min_value, real max_value)
 	else
 		return min_value;
 }
+
 vector<int> Random::Permutate(int arrary_length, int permutation_length)
 {
 	if(permutation_length > arrary_length)
@@ -51,7 +52,6 @@ vector<int> Random::Permutate(int arrary_length, int permutation_length)
 
 	return permutate_index;
 }
-
 vector<int>	Random::Permutate(int arrary_length, int permutation_length, vector<int> &avoid_index)
 {
 	if(permutation_length > arrary_length)

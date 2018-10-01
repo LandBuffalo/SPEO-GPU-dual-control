@@ -38,15 +38,15 @@ extern "C" void API_evaluateFitness(real* d_fitness_value, real* d_shuffled_elem
 class  CEC2014_CUDA
 {
 private:
-	int						sigma_[MAX_NUM_COMP_FUNC];
+	int						sigma_[MAX_NUM_COMP_FUNC];	//sigma value for composition functions
 
 	int 					flag_composition_;
 	int						num_composition_func_;
 	int						num_hybrid_func_;
 
-	int						ID_func_;
-	int						size_pop_;
-	int						dim_;
+	int						ID_func_;			//function ID
+	int						size_pop_;			//population size for each GPU global memory
+	int						dim_;				//dimension of problem
 	size_t					next_pow2_dim_;
 	size_t					next_pow2_pop_;
 	real					bias_;

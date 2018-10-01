@@ -2,6 +2,7 @@
 IslandEA::IslandEA(const NodeInfo node_info):migrate_(node_info)
 {
     node_info_ = node_info;
+    //create output file
     CheckAndCreatRecordFile();
 }
 
@@ -55,12 +56,15 @@ int IslandEA::Finish()
 {
     if(node_info_.GPU_ID != 0)
     {
+        //node 1~x send filnal results to node 0
         SendResultToIsland0();
     }
     else
     {
         vector<DisplayUnit> total_display_unit;
+        //node 0 receives final results from node 1~x
         RecvResultFromOtherIsland(total_display_unit);
+        //merge all received results for print
         MergeResults(total_display_unit);
         PrintResult();
     }
@@ -69,11 +73,12 @@ int IslandEA::Finish()
     return 0;
 }
 
+//decide wheher the current node stops
 int IslandEA::SendFlagFinish()
 {
     int tmp_flag_finish = 1;
     int tag = problem_info_.function_ID * 1000 +  10 * problem_info_.run_ID + FLAG_FINISH;
-
+    //send finish flag to each GPU control node
     for(int i = 0; i < node_info_.GPU_num; i++)
     {
         int destination = node_info_.node_num / node_info_.GPU_num * i;
@@ -83,6 +88,7 @@ int IslandEA::SendFlagFinish()
     return 0;
 }
 
+//run GPU-based EAs
 int IslandEA::RunEA()
 {
     EA_CUDA_->Run(sub_population_);
@@ -90,6 +96,8 @@ int IslandEA::RunEA()
     return 0;
 }
 
+
+//main body of GPU control unit
 int IslandEA::Execute()
 {
     int generation = 0;
@@ -99,6 +107,7 @@ int IslandEA::Execute()
     real communication_time = 0;
 
     long int total_FEs = problem_info_.max_base_FEs * problem_info_.dim / island_info_.island_num;
+    //stop conditions
 #ifndef COMPUTING_TIME
     while(current_FEs < total_FEs)
 #else
@@ -106,13 +115,16 @@ int IslandEA::Execute()
 #endif
     {
         RunEA();
+        //decide when perform migration operation
         if (generation % island_info_.interval == 0)
         {
             double tmp_time = MPI_Wtime();
+            //send migrations to other GPUs
             migrate_.MigrateOut(EA_CUDA_, sub_population_);
             communication_time += (real) (MPI_Wtime() - tmp_time);
         }
         double tmp_time = MPI_Wtime();
+        //check wheher communication control unit send immigrations
         migrate_.MigrateIn(EA_CUDA_, sub_population_);
         communication_time += (real) (MPI_Wtime() - tmp_time);
 

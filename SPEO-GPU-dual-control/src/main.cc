@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 
+//get parameters from commend line
 char* getParam(char * needle, char* haystack[], int count) {
     int i = 0;
     for (i = 0; i < count; i++) {
@@ -17,6 +18,7 @@ char* getParam(char * needle, char* haystack[], int count) {
     return 0;
 }
 
+// split the x-x style input
 vector<string> &split(const string &str, char delim, vector<string> &elems, bool skip_empty = true)
 {
     istringstream iss(str);
@@ -26,6 +28,8 @@ vector<string> &split(const string &str, char delim, vector<string> &elems, bool
         return elems;
 }
 
+
+//generate parameters from commend line or calculated from existing parameters
 int SetParameters(vector<int> &total_functions, vector<int> &total_runs, IslandInfo &island_info, ProblemInfo &problem_info, NodeInfo &node_info, int argc, char** argv)
 {
 //---------------------------problem info----------------------------------------------------//
@@ -41,6 +45,8 @@ int SetParameters(vector<int> &total_functions, vector<int> &total_runs, IslandI
         total_runs.push_back(i);
     if (getParam("-dim", argv, argc))
         problem_info.dim = atoi(getParam("-dim", argv, argc));
+
+    //total test functions
     if (getParam("-total_functions", argv, argc))
     {
         total_functions.clear();
@@ -53,6 +59,8 @@ int SetParameters(vector<int> &total_functions, vector<int> &total_runs, IslandI
         for (int i = atoi(tmp_function1); i <= atoi(tmp_function2); i++)
             total_functions.push_back(i);
     }
+
+    //total independing runs
     if (getParam("-total_runs", argv, argc))
     {
         total_runs.clear();
@@ -66,8 +74,12 @@ int SetParameters(vector<int> &total_functions, vector<int> &total_runs, IslandI
             total_runs.push_back(i);
 
     }
+
+    //total computing time
     if (getParam("-computing_time", argv, argc))
         problem_info.computing_time = atoi(getParam("-computing_time", argv, argc));
+
+    //total fitness evaluations
     if (getParam("-max_base_FEs", argv, argc))
         problem_info.max_base_FEs = atoi(getParam("-max_base_FEs", argv, argc));
 //---------------------------node info----------------------------------------------------//
@@ -133,6 +145,7 @@ int SetParameters(vector<int> &total_functions, vector<int> &total_runs, IslandI
 
 }
 
+//main body of island-based EAs
 int ConstructAndExecuteIslandModule(vector<int> &total_functions, vector<int> &total_runs, IslandInfo island_info, ProblemInfo problem_info, NodeInfo node_info)
 {
 
@@ -161,6 +174,7 @@ int ConstructAndExecuteIslandModule(vector<int> &total_functions, vector<int> &t
     return 0;
 }
 
+//communication node / control unit
 int ConstructAndExecuteMasterModule(vector<int> &total_functions, vector<int> &total_runs, IslandInfo island_info, ProblemInfo problem_info, NodeInfo node_info)
 {
     Master master(node_info);
@@ -180,6 +194,7 @@ int ConstructAndExecuteMasterModule(vector<int> &total_functions, vector<int> &t
     return 0;
 }
 
+//design for void node, not use in this work
 int ConstructAndExecuteVoidModule(vector<int> &total_functions, vector<int> &total_runs, IslandInfo island_info, ProblemInfo problem_info, NodeInfo node_info)
 {
     for (int i = 0; i < total_functions.size(); i++)

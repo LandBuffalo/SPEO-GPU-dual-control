@@ -17,12 +17,14 @@
 #define MAX_POOL_SIZE 64
 #define TILE_WIDTH 16
 
-
+//population in GPU global memory
 struct GPU_Population
 {
     real *elements;
     real *fitness_value;
 };
+
+//parameters stored in GPU global memory
 struct GPU_IslandInfo
 {
     int island_size;
@@ -60,21 +62,21 @@ protected:
 
     curandState *           d_rand_states_;
     int                     CalNextPow2Dim();
-    real                  CheckBound(real to_check_elements, real min_bound, real max_bound);
+    real                  CheckBound(real to_check_elements, real min_bound, real max_bound);   //check bound of individuals
 public:
                             EA_CUDA();
                             ~EA_CUDA();
 
-    int                     InitilizePopulation(Population & population);
+    int                     InitilizePopulation(Population & population);       //initilize the population in GPU global memory
     virtual int             Initilize(ProblemInfo problem_info, IslandInfo island_info);
     virtual int             Unitilize();
 
-    int                     TransferDataToCPU(Population &population);
-    int                     TransferDataFromCPU(Population &population);
-    int                     VerifyCorrectness(Population &population);
+    int                     TransferDataToCPU(Population &population);          //transfer date from GPU globale memory to CPU RAM
+    int                     TransferDataFromCPU(Population &population);        //transfer date from CPU RAM to GPU globale memory
+    int                     VerifyCorrectness(Population &population);          //verify the correctness of GPU EA operations by compare with CPU EA operations
 
-    virtual Individual      FindBestIndividual(Population & population);
-    int                     RegroupIslands(vector<int> &permutate_index, IslandInfo island_info);
+    virtual Individual      FindBestIndividual(Population & population);        //find the best individuals in population of GPU global memory
+    int                     RegroupIslands(vector<int> &permutate_index, IslandInfo island_info);       //regroup the population in GOU global memory
     Population              FindBestIndividualInIslands(Population & population);
     virtual int             Run(Population & population) = 0;
     virtual string          GetParameters() = 0;
